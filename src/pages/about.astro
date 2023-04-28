@@ -1,4 +1,24 @@
 ---
+import '../styles/global.css';
+
+const pageTitle = 'About Me';
+
+const identity = {
+  name: 'アプリ作男',
+  country: 'Japan',
+  occupation: 'Technical Writer',
+  hobbies: ['birdwatching', 'football'],
+};
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro', 'Writing Docs'];
+
+const isHappy = true;
+const isFinished = true;
+const objective = 3;
+
+const skillColor = 'navy';
+const fontWeight = 'bold';
+const textCase = 'uppercase';
 ---
 
 <html lang="en">
@@ -7,7 +27,19 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>{pageTitle}</title>
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skill {
+        color: green;
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
   </head>
   <body>
     <nav>
@@ -17,7 +49,33 @@
     </nav>
 
     <h1>Astro</h1>
-    <h2>This is About Page!</h2>
-    <p>I'm adding an about page to my astro tutorial site!</p>
+    <h2>This is {pageTitle} Page!</h2>
+    <p>Here are a few facts about me:</p>
+    <ul>
+      <li>My name is {identity.name}.</li>
+      <li>
+        I live in {identity.country} and I word as a {identity.occupation}.
+      </li>
+      {
+        identity.hobbies.length >= 2 && (
+          <li>
+            Two of my hobbies are: {identity.hobbies[0]} and{' '}
+            {identity.hobbies[1]}
+          </li>
+        )
+      }
+    </ul>
+    <p>My skills are:</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+    {isHappy && <p>I'm very happy to coding!</p>}
+    {
+      isFinished ? (
+        <p>I archieved my goal: Coding {objective} hours a day!</p>
+      ) : (
+        <p>I still working hard coding {objective} hours a day!</p>
+      )
+    }
   </body>
 </html>
