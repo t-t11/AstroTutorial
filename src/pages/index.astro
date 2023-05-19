@@ -1,6 +1,7 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-
 const pageTitle = 'Home';
 ---
 
@@ -13,12 +14,7 @@ const pageTitle = 'Home';
     <title>{pageTitle}</title>
   </head>
   <body>
-    <nav>
-      <a href="/">HOME</a>
-      <a href="/about/">ABOUT</a>
-      <a href="/blog/">BLOG</a>
-    </nav>
-
+    <Header />
     <h1>Astro</h1>
     <h2>This is {pageTitle}!</h2>
     <ul>
@@ -26,5 +22,10 @@ const pageTitle = 'Home';
       <li>Tsukemen</li>
       <li>僕イケメン!by狩野エイコウ</li>
     </ul>
+
+    <Footer />
+    <script>
+      import '../scripts/menu.js';
+    </script>
   </body>
 </html>
